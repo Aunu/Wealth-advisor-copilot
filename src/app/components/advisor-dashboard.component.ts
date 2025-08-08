@@ -51,7 +51,7 @@ interface AdvisorPerformance {
         </div>
 
         <!-- Key Metrics -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" style="margin: 10px 0px;">
           <app-metric-card
             title="Total Revenue"
             value="$1.24M"
@@ -90,9 +90,9 @@ interface AdvisorPerformance {
         </div>
 
         <!-- Main Content Row -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6" style="margin: 10px 0px;">
           <!-- Top Performers -->
-          <div class="lg:col-span-2 bg-card text-card-foreground rounded-lg border shadow-sm">
+          <div class="lg:col-span-3 bg-card text-card-foreground rounded-lg border shadow-sm">
             <div class="flex flex-col space-y-1.5 p-6">
               <h3>Top Performing Advisors</h3>
             </div>
@@ -122,49 +122,21 @@ interface AdvisorPerformance {
             </div>
           </div>
 
-          <!-- Activity Feed -->
-          <app-activity-feed></app-activity-feed>
+         
         </div>
 
         <!-- Goals and Progress -->
         <div class="bg-card text-card-foreground rounded-lg border shadow-sm">
           <div class="flex flex-col space-y-1.5 p-6">
-            <h3>Team Goals Progress</h3>
+            <h3>Recommendation for GMM</h3>
           </div>
-          <div class="p-6 pt-0 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="text-sm">Quarterly Revenue Target</span>
-                <span class="text-sm font-medium">$3.2M / $4M</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-blue-600 h-2 rounded-full" style="width: 80%"></div>
-              </div>
-              <p class="text-xs text-muted-foreground">80% completed</p>
-            </div>
 
             <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="text-sm">New Client Acquisitions</span>
-                <span class="text-sm font-medium">156 / 200</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-green-600 h-2 rounded-full" style="width: 78%"></div>
-              </div>
-              <p class="text-xs text-muted-foreground">78% completed</p>
+              
+              
+              <p class="text-xs text-muted-foreground" style="margin: 0px 20px 20px 20px;">Run a 7-day HNI upsell campaign targeting idle cash; expect quick wins in PMS/AIF allocations. Assign a product specialist to high-risk books for four joint meetings to improve client confidence and reduce churn.</p>
             </div>
-
-            <div class="space-y-2">
-              <div class="flex justify-between">
-                <span class="text-sm">Team Training Hours</span>
-                <span class="text-sm font-medium">420 / 500</span>
-              </div>
-              <div class="w-full bg-gray-200 rounded-full h-2">
-                <div class="bg-purple-600 h-2 rounded-full" style="width: 84%"></div>
-              </div>
-              <p class="text-xs text-muted-foreground">84% completed</p>
-            </div>
-          </div>
+       
         </div>
       </div>
     </div>

@@ -83,7 +83,7 @@ export class ClientSummaryTileComponent implements OnInit {
   tileConfig: SmartTileConfig = {
     title: 'Client Summary',
     subtitle: 'Portfolio & profile overview',
-    aiSummary: 'Based on the comprehensive client profile for Jason Adams, here is  a targeted recommendation:Develop a tax-efficient, sustainable energy sector investment strategy that preserves wealth and supports multi-generational transfer, focusing on clean technology and private equity opportunities aligned with his professional background and investment objectives. Prioritize a personalized approach that leverages his sophisticated investment experience and high engagement with detailed analytical content.',
+    aiSummary: 'Based on the comprehensive client profile for Sarah Jhonson, here is  a targeted recommendation:Develop a tax-efficient, sustainable energy sector investment strategy that preserves wealth and supports multi-generational transfer, focusing on clean technology and private equity opportunities aligned with his professional background and investment objectives. Prioritize a personalized approach that leverages his sophisticated investment experience and high engagement with detailed analytical content.',
     icon: `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
     </svg>`
