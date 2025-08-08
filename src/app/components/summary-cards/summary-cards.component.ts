@@ -88,7 +88,7 @@ export class SummaryCardsComponent {
     item.loading = true;
     this.dataService.generateAction(item).subscribe(data => {
       let res = data.agent_response;
-      try{
+      try {
         const response = JSON.parse(data.agent_response);
         console.log(response);
         if (response.emails) {
@@ -96,20 +96,45 @@ export class SummaryCardsComponent {
         } else if (response.meetings) {
           this.meetingPreview.open(response.meetings[0].date, response.meetings[0].time, response.meetings[0].location, response.meetings[0].meetingTopic);
         } else {
-          console.log(response)
-          this.toast.showToast({
-            type: 'success',
-            message: response,
-            duration: 4000
-          });
+          const response = data.agent_response;
+          const subjectMatch = response.match(/"subject"\s*:\s*"([^"]*)"/s);
+          const bodyMatch = response.match(/"body"\s*:\s*"([\s\S]*?)"\s*,\n\s*"origin"/);
+          const timeMatch = response.match(/"time"\s*:\s*"([^"]*)"/s);
+          const dateMatch = response.match(/"date"\s*:\s*"([^"]*)"/s);
+          const meetingDate = dateMatch ? dateMatch[1] : null;
+
+          // Extract time
+
+          const meetingTime = timeMatch ? timeMatch[1] : null;
+
+          if (subjectMatch && bodyMatch) {
+            const subject = subjectMatch ? subjectMatch[1] : null;
+            const body = bodyMatch ? bodyMatch[1] : null;
+            this.preview.open(subject, body);
+          } else if (meetingDate && meetingTime) {
+            this.meetingPreview.open(meetingDate, meetingTime, 'Zoom', 'Meeting');
+          }
         }
       } catch (err) {
-        this.toast.showToast({
-          type: 'success',
-          message: res,
-          duration: 10000
-        });
-      }      
+        const response = data.agent_response;
+        const subjectMatch = response.match(/"subject"\s*:\s*"([^"]*)"/s);
+        const bodyMatch = response.match(/"body"\s*:\s*"([\s\S]*?)"\s*,\n\s*"origin"/);
+        const timeMatch = response.match(/"time"\s*:\s*"([^"]*)"/s);
+        const dateMatch = response.match(/"date"\s*:\s*"([^"]*)"/s);
+        const meetingDate = dateMatch ? dateMatch[1] : null;
+
+        // Extract time
+
+        const meetingTime = timeMatch ? timeMatch[1] : null;
+
+        if (subjectMatch && bodyMatch) {
+          const subject = subjectMatch ? subjectMatch[1] : null;
+          const body = bodyMatch ? bodyMatch[1] : null;
+          this.preview.open(subject, body);
+        } else if (meetingDate && meetingTime) {
+          this.meetingPreview.open(meetingDate, meetingTime, 'Zoom', 'Meeting');
+        }
+      }
       item.status = 'completed';
       this.summaryData = this.summaryData.filter((task: any) => task.task_id !== item.task_id);
     })
