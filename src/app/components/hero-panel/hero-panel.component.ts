@@ -40,30 +40,21 @@ import {
               <p class="text-sm text-muted-foreground">Active Clients</p>
               <div class="flex items-center space-x-2">
                 <p class="font-medium">24</p>
-                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  <lucide-icon [img]="TrendingUpIcon" class="h-3 w-3 mr-1"></lucide-icon>
-                  +8
-                </span>
+                
               </div>
             </div>
             <div class="space-y-2">
               <p class="text-sm text-muted-foreground">Pipeline Number</p>
               <div class="flex items-center space-x-2">
                 <p class="font-medium">$7.8MM</p>
-                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground">
-                  <lucide-icon [img]="TrendingDownIcon" class="h-3 w-3 mr-1"></lucide-icon>
-                  -2
-                </span>
+                
               </div>
             </div>
             <div class="space-y-2">
               <p class="text-sm text-muted-foreground">NNIA YTD</p>
               <div class="flex items-center space-x-2">
                 <p class="font-medium">$21.4MM</p>
-                <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                  <lucide-icon [img]="TrendingUpIcon" class="h-3 w-3 mr-1"></lucide-icon>
-                  +5%
-                </span>
+                
               </div>
             </div>
           </div>
