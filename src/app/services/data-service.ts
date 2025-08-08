@@ -21,6 +21,12 @@ export class DataService {
     
     return this.http.post<any>(`https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/`, item);
   }
+  generateMeetingOfTask(item: any): Observable<any> {
+    item.intent = 'meeting';
+    console.log(item);
+    
+    return this.http.post<any>(`https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/`, item);
+  }
   getKYCFollowUpData(): Observable<any> {
     const item = {
       "task_id": "",
@@ -35,5 +41,8 @@ export class DataService {
       "intent": "service"
     }
     return this.http.post<any>('https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/', item);
+  }
+  generateAction(item: any): Observable<any> {      
+    return this.http.post<any>(`https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/`, item);
   }
 }

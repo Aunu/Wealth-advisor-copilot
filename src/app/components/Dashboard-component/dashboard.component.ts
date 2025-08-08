@@ -61,7 +61,7 @@ export class DashboardComponent {
     setTimeout(() => {
       this.dataService.getKYCFollowUpData().subscribe((data: any) => {
         console.log('KYC Follow Up Data:', data);
-        this.notifications = JSON.parse(data.agent_response).notifications
+        this.notifications = JSON.parse(data.agent_response).notifications.slice(0, 2);
         this.notifications.forEach(notification => {
           notification.action = false;
         })
