@@ -1,0 +1,57 @@
+<div class="fixed top-16 right-6 space-y-4">
+  <!-- Wrapper for all notification widgets -->
+  <div
+    *ngFor="let notification of notifications"
+    class="group relative w-80 p-2 rounded-lg shadow-lg bg-black border border-gray-200"
+  >
+    <!-- Close Button -->
+    <button
+        *ngIf="!notification.action"
+      (click)="ignoreNotification(notification)"
+      class="absolute top-2 right-2 text-gray-500 hover:text-white"
+    >
+      ✖
+    </button>
+
+    <!-- Client ID -->
+    <p class="text-sm text-white mb-1">
+      {{ notification.client_id }}
+    </p>
+
+    <!-- Notification Text -->
+    <p class="text-white text-xs mb-4">
+      {{ notification.notification }}
+    </p>
+
+    <!-- Action Button (hidden by default, visible on hover) -->
+    <button
+      *ngIf="!notification.action && !actionInProgress"
+      (click)="takeAction(notification)"
+      class="absolute bottom-1 right-2 px-1 py-0.5 bg-gray-500 text-white text-xs rounded hover:bg-gray-500 transition opacity-0 group-hover:opacity-100"
+    >
+      Take Action
+    </button>
+    <svg
+      *ngIf="notification.action"
+      class="absolute bottom-1 right-2 w-6 h-6 text-gray-100 animate-spin"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+    >
+      <circle
+        class="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        stroke-width="4"
+      ></circle>
+      <path
+        class="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+      ></path>
+    </svg>
+  </div>
+</div>
+<email-preview #preview></email-preview>

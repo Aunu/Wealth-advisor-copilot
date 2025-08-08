@@ -21,4 +21,19 @@ export class DataService {
     
     return this.http.post<any>(`https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/`, item);
   }
+  getKYCFollowUpData(): Observable<any> {
+    const item = {
+      "task_id": "",
+      "advisor_id": "",
+      "client_id": "",
+      "task_category": "KYC",
+      "task_title": "",
+      "task_description": "",
+      "meeting_type": null,
+      "tags": ["kyc", "update"],
+      "notes": "",
+      "intent": "service"
+    }
+    return this.http.post<any>('https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/', item);
+  }
 }

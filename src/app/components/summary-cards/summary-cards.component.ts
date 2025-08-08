@@ -41,7 +41,7 @@ interface SummaryItem {
             <h3 class="tracking-tight text-sm font-medium">{{item.task_title}}</h3>
             <div class="flex items-center space-x-2">
             <div class="group relative">
-    <svg (click)="onMeetingClick()"
+    <svg (click)="onMeetingClick(item)"
          xmlns="http://www.w3.org/2000/svg"
          class="w-6 h-6 text-green-600 hover:text-green-800 cursor-pointer"
          fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,13 +56,21 @@ interface SummaryItem {
 
   <!-- Email Icon -->
   <div class="group relative">
-    <svg (click)="onEmailClick(item)"
+    <svg *ngIf="!item.emailLoading" (click)="onEmailClick(item)"
          xmlns="http://www.w3.org/2000/svg"
          class="w-6 h-6 text-amber-500 hover:text-amber-700 cursor-pointer"
          fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
             d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z" />
     </svg>
+    <svg *ngIf="item.emailLoading"
+       class="w-6 h-6 text-amber-500 animate-spin"
+       xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+    <circle class="opacity-25" cx="12" cy="12" r="10"
+            stroke="currentColor" stroke-width="4"></circle>
+    <path class="opacity-75" fill="currentColor"
+          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+  </svg>
     <span class="absolute left-1/2 bottom-full mb-2 hidden transform -translate-x-1/2 rounded bg-gray-800 px-2 py-1 text-xs text-white group-hover:block">
       Send Email
     </span>
@@ -99,7 +107,7 @@ interface SummaryItem {
 })
 export class SummaryCardsComponent {
   TrendingUpIcon = TrendingUp;
-  summaryData: any = [];
+  summaryData : any = [];
   emailRequestSent = false;
 
    private toast = inject(TauiToastService);
@@ -111,29 +119,35 @@ export class SummaryCardsComponent {
      timer(0, 40000).pipe(
       switchMap(() => this.dataService.getTaskData())
     ).subscribe({
-      next: res => this.summaryData = res,
+      next: res => {this.summaryData = res; this.summaryData.forEach((item:any) => {
+        item.emailLoading = false;
+      })},
       error: err => console.error('API error:', err)
     });
 
   }
-  onMeetingClick() {
+  onMeetingClick(item:any) {
     this.toast.showToast({
       type: 'success',                  // 'info' | 'success' | 'warning' | 'error'
       message: 'Meeting setup launched!',
       duration: 3000                    // Optional, defaults to 5000 ms
     });
+    item.status = 'completed';
+    this.summaryData = this.summaryData.filter((task:any) => task.status === 'pending');
   }
   onEmailClick(item:any) {
     // Call the data service to generate the email content
     console.log('Generating email for item:', item);
     if(item && !this.emailRequestSent ) {
+        item.emailLoading = true; // Show loading state
         this.emailRequestSent = true; // Prevent multiple requests
         this.dataService.generateEmailOfTask(item).subscribe(
         data => {
           this.emailRequestSent = false; 
           const response = JSON.parse(data.agent_response);
           this.preview.open(response.emails[0].subject, response.emails[0].body);
-
+          item.status = 'completed';
+          this.summaryData = this.summaryData.filter((task:any) => task.status === 'pending');
         },
       error => console.error('Error loading data', error)
     );

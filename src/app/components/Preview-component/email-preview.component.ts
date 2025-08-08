@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, inject } from '@angular/core';
+import { TauiToastService } from '@ngx-tailwind-ui/toast';
 
 @Component({
   standalone: true,
@@ -12,6 +13,13 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
       <section class="py-4">
         {{ body }}
       </section>
+      <footer class="mt-4 flex justify-end">
+        <button 
+          (click)="send()" 
+          class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded transition">
+          Send
+        </button>
+      </footer>
     </dialog>
   `,
   styles: [`
@@ -20,6 +28,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
   `]
 })
 export class EmailPreviewComponent {
+  private toast = inject(TauiToastService);
   @ViewChild('dialog') dialog!: ElementRef<HTMLDialogElement>;
   subject = '';
   body = '';
@@ -31,5 +40,14 @@ export class EmailPreviewComponent {
   }
   close() {
     this.dialog.nativeElement.close();
+  }
+  send() {
+    // Add any send logic here
+    this.close();
+    this.toast.showToast({
+      type: 'success',                  // 'info' | 'success' | 'warning' | 'error'
+      message: 'Email sent!',
+      duration: 3000                    // Optional, defaults to 5000 ms
+    });
   }
 }

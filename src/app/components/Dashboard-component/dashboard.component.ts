@@ -9,6 +9,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { EmailPreviewComponent } from './../Preview-component/email-preview.component';
 import { WebSocketService } from 'src/app/services/web-socket.service';
 import { Subscription } from 'rxjs';
+import { NotificationWidgetComponent } from '../notification-widget/notification-widget.component';
+import { DataService } from 'src/app/services/data-service';
 
 @Component({
   selector: 'dashboard-component',
@@ -21,7 +23,8 @@ import { Subscription } from 'rxjs';
     EntriesTableComponent,
     ChatComponent,
     HttpClientModule,
-    EmailPreviewComponent
+    EmailPreviewComponent,
+    NotificationWidgetComponent
   ],
   template: `
     <div class="min-h-screen bg-background">
@@ -33,6 +36,7 @@ import { Subscription } from 'rxjs';
         <app-entries-table mt-4></app-entries-table>
       </main>
     </div>
+    <app-notification-widget [notifications]="notifications"></app-notification-widget>
     <app-chat class="fixed bottom-0 right-0 m-6 w-80 bg-white shadow-lg rounded-lg"></app-chat>
     <email-preview #preview></email-preview>
   `,
@@ -42,8 +46,9 @@ export class DashboardComponent {
  @ViewChild('preview') preview!: EmailPreviewComponent;
   title = 'angular-dashboard';
   sub: Subscription = new Subscription();
+  notifications : any[] = [];
 
-  constructor(private ws: WebSocketService) {}
+  constructor(private ws: WebSocketService, private dataService: DataService) {};
 
   ngOnInit() {
     this.sub = this.ws.messages$().subscribe(msg => {
@@ -52,6 +57,16 @@ export class DashboardComponent {
         this.preview.open(response.subject, response.body);
     }
     });
-  
+
+    setTimeout(() => {
+      this.dataService.getKYCFollowUpData().subscribe((data: any) => {
+        console.log('KYC Follow Up Data:', data);
+        this.notifications = JSON.parse(data.agent_response).notifications
+        this.notifications.forEach(notification => {
+          notification.action = false;
+        })
+        console.log('Notifications:', this.notifications);
+      })
+    }, 5000)  
   }
 }
