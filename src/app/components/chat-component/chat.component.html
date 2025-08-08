@@ -1,0 +1,18 @@
+<div class="chat-wrapper">
+  <div class="chat-header" (click)="toggleChat()">
+    Ask me anything (AI powered)
+    <span class="toggle-icon">{{ isOpen ? '▼' : '▲' }}</span>
+  </div>
+
+  <div [@expandCollapse]="isOpen ? 'expanded' : 'collapsed'" class="chat-content">
+    <div class="messages-container">
+      <div *ngFor="let msg of messages" class="message">{{ msg.input_text || msg.text }}</div>
+    </div>
+    <div *ngIf="requestSent" class="messages-container"> <p> Connecting to available agent to assist you...</p> </div>
+    <div>
+    <div class="input-container">
+      <input [(ngModel)]="newMsg" placeholder="Type a message…" />
+      <button (click)="send()">Send</button>
+    </div>
+  </div>
+</div>
