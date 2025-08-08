@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { 
   LucideAngularModule, 
   Search, 
@@ -13,7 +14,7 @@ import {
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, FormsModule, LucideAngularModule],
+  imports: [CommonModule, FormsModule, LucideAngularModule, RouterModule],
   template: `
     <nav class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div class=" flex h-16 items-center px-6">
@@ -28,15 +29,11 @@ import {
           <a href="#" class="text-foreground hover:text-primary transition-colors">
             Overview
           </a>
-          <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
-            Projects
-          </a>
-          <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
+
+          <a routerLink='/advisor-analytics' class="text-muted-foreground hover:text-primary transition-colors">
             Analytics
           </a>
-          <a href="#" class="text-muted-foreground hover:text-primary transition-colors">
-            Team
-          </a>
+          
         </nav>
 
         <div class="ml-auto flex items-center space-x-4">

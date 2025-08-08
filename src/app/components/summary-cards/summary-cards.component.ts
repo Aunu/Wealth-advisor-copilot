@@ -126,6 +126,7 @@ export class SummaryCardsComponent {
     });
 
   }
+<<<<<<< Updated upstream
   onMeetingClick(item:any) {
     this.toast.showToast({
       type: 'success',                  // 'info' | 'success' | 'warning' | 'error'
@@ -134,6 +135,29 @@ export class SummaryCardsComponent {
     });
     item.status = 'completed';
     this.summaryData = this.summaryData.filter((task:any) => task.status === 'pending');
+=======
+  onMeetingClick(item: any) {
+    // this.toast.showToast({
+    //   type: 'success',                  // 'info' | 'success' | 'warning' | 'error'
+    //   message: 'Meeting setup launched!',
+     
+    //   duration: 300000                 // Optional, defaults to 5000 ms
+    // });
+    if(item && !this.emailRequestSent ) {
+        this.emailRequestSent = true; // Prevent multiple requests
+         item.intent = 'meeting';
+        this.dataService.generateEmailOfTask(item).subscribe(
+        data => {
+          this.emailRequestSent = false; 
+          const response = JSON.parse(data.agent_response);
+          const meetingResponsebody = `Your meeting has been scheduled successfully. Please find meeting id and location below:\n\n\n\n\n Meeting Id: ${response.meetings[0].meeting_id}\nLocation: ${response.meetings[0].location}`;
+          this.preview.open(response.meetings[0].meeting_topic, meetingResponsebody);
+
+        },
+      error => console.error('Error loading data', error)
+    );
+  }
+>>>>>>> Stashed changes
   }
   onEmailClick(item:any) {
     // Call the data service to generate the email content
@@ -141,6 +165,7 @@ export class SummaryCardsComponent {
     if(item && !this.emailRequestSent ) {
         item.emailLoading = true; // Show loading state
         this.emailRequestSent = true; // Prevent multiple requests
+         item.intent = 'email';
         this.dataService.generateEmailOfTask(item).subscribe(
         data => {
           this.emailRequestSent = false; 

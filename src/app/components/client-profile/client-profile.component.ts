@@ -11,10 +11,7 @@ import { CommonModule } from '@angular/common';
         <div class="flex items-center justify-between">
           <div class="flex items-center space-x-4">
             <div class="relative flex h-12 w-12 shrink-0 overflow-hidden rounded-full">
-              <img 
-                class="aspect-square h-full w-full"
-                src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-                alt="Sarah Johnson" />
+              
             </div>
             <div>
               <h2 class="text-xl font-semibold">Sarah Johnson</h2>
@@ -24,7 +21,7 @@ import { CommonModule } from '@angular/common';
                   <svg class="h-4 w-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"></path>
                   </svg>
-                  <span class="text-sm font-medium">$890,000 AUM</span>
+                  <span class="text-sm font-medium">$147,500,000.0 AUM</span>
                 </div>
                 <div class="flex items-center space-x-1">
                   <svg class="h-4 w-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

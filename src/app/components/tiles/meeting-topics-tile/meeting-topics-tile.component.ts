@@ -1,9 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SmartTileComponent, SmartTileConfig } from '../../smart-tile/smart-tile.component';
+import { EmailPreviewComponent } from '../../Preview-component/email-preview.component';
+import { DataService } from 'src/app/services/data-service';
+import { timer } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 interface MeetingTopic {
-  priority: number;
+  priority: string;
   topic: string;
   duration: string;
   type: string;
@@ -36,13 +40,13 @@ interface MeetingTopic {
 
         <!-- Meeting Topics -->
         <div class="space-y-2">
-          <div *ngFor="let topic of meetingTopics" class="p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors">
+          <div *ngFor="let topic of meetingTopics; let i = index" class="p-3 rounded-lg border bg-card hover:bg-muted/50 transition-colors">
             <div class="flex items-start justify-between mb-2">
               <div class="flex items-center space-x-2">
                 <div class="flex items-center justify-center w-5 h-5 rounded-full bg-primary text-primary-foreground text-xs font-medium">
-                  {{ topic.priority }}
+                  {{ i + 1 }}
                 </div>
-                <h4 class="font-medium text-sm">{{ topic.topic }}</h4>
+                <h4 class="font-medium text-sm">{{ topic.task_title }}</h4>
               </div>
               <div class="flex items-center space-x-2">
                 <span [class]="'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10 ' + getStatusColor(topic.status)">
@@ -57,19 +61,12 @@ interface MeetingTopic {
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
                   </ng-container>
-                  {{ topic.type }}
+                  
                 </span>
               </div>
             </div>
-            <p class="text-xs text-muted-foreground mb-2 ml-7">{{ topic.description }}</p>
-            <div class="flex items-center justify-between ml-7">
-              <div class="flex items-center space-x-1 text-xs text-muted-foreground">
-                <svg class="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                <span>{{ topic.duration }}</span>
-              </div>
-            </div>
+            <p class="text-xs text-muted-foreground mb-2 ml-7">{{ topic.task_description }}</p>
+            
           </div>
         </div>
 
@@ -89,57 +86,34 @@ interface MeetingTopic {
   styles: []
 })
 export class MeetingTopicsTileComponent {
-  meetingTopics: MeetingTopic[] = [
-    {
-      priority: 1,
-      topic: 'College Planning for Emma',
-      duration: '10 mins',
-      type: 'Action Required',
-      description: 'Discuss 529 plan setup and education savings strategy',
-      status: 'primary'
-    },
-    {
-      priority: 2,
-      topic: 'Tax Loss Harvesting Opportunity',
-      duration: '8 mins',
-      type: 'Time Sensitive',
-      description: 'Execute before year-end to offset capital gains',
-      status: 'urgent'
-    },
-    {
-      priority: 3,
-      topic: 'Early Retirement Planning',
-      duration: '15 mins',
-      type: 'Strategic Planning',
-      description: 'Analyze feasibility of retiring at 62 vs 65',
-      status: 'planning'
-    },
-    {
-      priority: 4,
-      topic: 'ESG Investment Integration',
-      duration: '5 mins',
-      type: 'Opportunity',
-      description: 'Present sustainable investment options',
-      status: 'opportunity'
-    },
-    {
-      priority: 5,
-      topic: 'Q4 Performance Review',
-      duration: '7 mins',
-      type: 'Standard Review',
-      description: 'Review portfolio performance and market outlook',
-      status: 'standard'
-    }
+
+   meetingTopics: any = [
+    
   ];
 
-  get totalDuration(): number {
-    return this.meetingTopics.reduce((sum, topic) => sum + parseInt(topic.duration), 0);
-  }
+  @ViewChild('preview') preview!: EmailPreviewComponent;
+    constructor(private dataService: DataService) { }
+  
+    ngOnInit() {
+  
+       timer(0, 40000).pipe(
+        switchMap(() => this.dataService.getTaskDataForAClient("CL-000003"))
+      ).subscribe({
+        next: res => this.meetingTopics = res,
+        error: err => console.error('API error:', err)
+      });
+  
+    }
+ 
+
+  
+
+  
 
   get tileConfig(): SmartTileConfig {
     return {
       title: 'AI Meeting Agenda',
-      subtitle: `${this.meetingTopics.length} topics • ${this.totalDuration} min estimated`,
+      subtitle: `${this.meetingTopics.length} topics • 45 min estimated`,
       aiSummary: 'AI-generated agenda prioritizes immediate action items (college planning, tax harvesting) followed by strategic discussions. Estimated 45-minute call optimized for client\'s conservative profile and current life stage.',
       urgencyLevel: 'high',
       icon: `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
