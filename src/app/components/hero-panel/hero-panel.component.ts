@@ -19,7 +19,7 @@ import {
       <!-- Main Summary -->
       <div class="rounded-lg border bg-card text-card-foreground shadow-sm">
         <div class="flex flex-col space-y-1.5 p-6 pb-2">
-          <h3 class="text-2xl font-semibold leading-none tracking-tight">Welcome back, John!</h3>
+          <h3 class="text-2xl font-semibold leading-none tracking-tight">Welcome back, Yelena!</h3>
           <p class="text-sm text-muted-foreground">
             Here's what you need to know about your accounts today.
           </p>
