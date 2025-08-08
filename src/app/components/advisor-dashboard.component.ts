@@ -81,7 +81,7 @@ interface AdvisorPerformance {
           
           <app-metric-card
             title="Avg. Deal Size"
-            value="$18.2K"
+            value="$1.1MM"
             [change]="15.3"
             changeType="positive"
             subtitle="vs last month"
