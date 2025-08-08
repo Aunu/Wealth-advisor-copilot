@@ -154,11 +154,7 @@ html {
   white-space: nowrap;
 }
 
-@layer components {
-  .taui-toast {
-    @apply fixed top-4 inset-x-0 mx-auto z-50;
-  }
-}
+
 
 .fixed-box {
   width: 300px;
@@ -169,3 +165,8 @@ html {
   word-break: break-all;        /* Ensures wrapping even without spaces */
   white-space: normal;          /* Ensures text wraps normally */
 }
+.taui-toast-container {
+  top: 0 !important;
+  bottom: auto !important;
+}
+

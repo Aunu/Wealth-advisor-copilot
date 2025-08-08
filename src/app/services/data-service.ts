@@ -13,11 +13,17 @@ export class DataService {
   getDashboardData(): Observable<any> {
     return this.http.get<any>(this.dashboardApiUrl);
   }
+  getClientData(clientId: any): Observable<any> {
+    return this.http.get<any>(`${this.dashboardApiUrl}?client_id=${clientId}`);
+  }
   getTaskData(): Observable<any> {
     return this.http.get<any>(this.taskApiUrl);
   }
+  getTaskDataForAClient(clientId: any): Observable<any> {
+    return this.http.get<any>(`${this.taskApiUrl}&client_id=${clientId}`);
+  }
   generateEmailOfTask(item: any): Observable<any> {
-    item.intent = 'email';
+   
     
     return this.http.post<any>(`https://iowvl5horzg7s7zskhxojt7yte0klxko.lambda-url.us-east-1.on.aws/`, item);
   }

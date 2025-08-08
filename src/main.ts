@@ -6,6 +6,8 @@ import { AgGridModule } from 'ag-grid-angular';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { routes } from './app/app.route';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 import { AppComponent } from './app/app.component';
@@ -15,6 +17,8 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes),
     provideHttpClient(),
     provideAnimations(),
-    importProvidersFrom(NgChartsModule, AgGridModule)
+    provideAnimationsAsync(),
+    provideHttpClient(),
+    importProvidersFrom(NgChartsModule, AgGridModule, MatNativeDateModule)
   ]
 }).catch(err => console.error(err));

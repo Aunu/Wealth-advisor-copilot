@@ -21,15 +21,15 @@ import {
         <div class="flex flex-col space-y-1.5 p-6 pb-2">
           <h3 class="text-2xl font-semibold leading-none tracking-tight">Welcome back, John!</h3>
           <p class="text-sm text-muted-foreground">
-            Here's what's happening with your projects today.
+            Here's what you need to know about your accounts today.
           </p>
         </div>
         <div class="p-6 pt-0">
           <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
             <div class="space-y-2">
-              <p class="text-sm text-muted-foreground">Total Revenue</p>
+              <p class="text-sm text-muted-foreground">Total AUM</p>
               <div class="flex items-center space-x-2">
-                <p class="font-medium">$48,200</p>
+                <p class="font-medium">$348MM</p>
                 <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
                   <lucide-icon [img]="TrendingUpIcon" class="h-3 w-3 mr-1"></lucide-icon>
                   +12.5%
@@ -37,7 +37,7 @@ import {
               </div>
             </div>
             <div class="space-y-2">
-              <p class="text-sm text-muted-foreground">Active Projects</p>
+              <p class="text-sm text-muted-foreground">Active Clients</p>
               <div class="flex items-center space-x-2">
                 <p class="font-medium">24</p>
                 <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
@@ -47,9 +47,9 @@ import {
               </div>
             </div>
             <div class="space-y-2">
-              <p class="text-sm text-muted-foreground">Team Members</p>
+              <p class="text-sm text-muted-foreground">Pipeline Number</p>
               <div class="flex items-center space-x-2">
-                <p class="font-medium">12</p>
+                <p class="font-medium">$7.8MM</p>
                 <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground">
                   <lucide-icon [img]="TrendingDownIcon" class="h-3 w-3 mr-1"></lucide-icon>
                   -2
@@ -57,9 +57,9 @@ import {
               </div>
             </div>
             <div class="space-y-2">
-              <p class="text-sm text-muted-foreground">Completion Rate</p>
+              <p class="text-sm text-muted-foreground">NNIA YTD</p>
               <div class="flex items-center space-x-2">
-                <p class="font-medium">87%</p>
+                <p class="font-medium">$21.4MM</p>
                 <span class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80">
                   <lucide-icon [img]="TrendingUpIcon" class="h-3 w-3 mr-1"></lucide-icon>
                   +5%

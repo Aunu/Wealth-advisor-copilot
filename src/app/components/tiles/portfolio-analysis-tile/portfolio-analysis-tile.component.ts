@@ -32,7 +32,7 @@ interface AnalysisItem {
           </div>
           <div class="flex-1">
             <div class="text-sm font-medium">Current Allocation</div>
-            <div class="text-xs text-muted-foreground">Well-diversified across asset classes</div>
+            <div class="text-xs text-muted-foreground">Portfolio is not Well-diversified across asset classes</div>
           </div>
         </div>
 
@@ -59,7 +59,7 @@ export class PortfolioAnalysisTileComponent implements OnInit {
 
   tileConfig: SmartTileConfig = {
     title: 'Portfolio Analysis',
-    subtitle: 'Performance & allocation insights',
+    subtitle: 'Optimize portfolio performance by reducing bond allocation and increasing exposure to equity investments. Strategically sell the underperforming mid-cap stock and redistribute funds into more promising large-cap and emerging market opportunities to enhance potential returns.',
     aiSummary: 'Portfolio is well-positioned with strong risk-adjusted returns. Fixed income allocation provides stability while equity positions drive growth. Consider minor rebalancing in Q1 2025.',
     urgencyLevel: 'low',
     icon: `<svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -77,11 +77,8 @@ export class PortfolioAnalysisTileComponent implements OnInit {
   ];
 
   allocationData = [
-    { name: 'US Equity', value: 35, color: '#3b82f6' },
-    { name: 'Fixed Income', value: 30, color: '#10b981' },
-    { name: 'International', value: 20, color: '#8b5cf6' },
-    { name: 'REITs', value: 10, color: '#f59e0b' },
-    { name: 'Cash', value: 5, color: '#6b7280' }
+    { name: 'Mutual Fund', value: 65, color: '#3b82f6' },
+    { name: 'US Equity', value: 35, color: '#10b981' },
   ];
 
   analyses: AnalysisItem[] = [

@@ -182,7 +182,7 @@ class ActionsCellRendererComponent {
 
   viewDetails() {
     console.log('View details:', this.params.data.id);
-    this.router.navigate(['/client-details'], { queryParams: { id: this.params.data.id } });
+    this.router.navigate(['/client-details'], { queryParams: { id: "CL-000003" } });
     this.isDropdownOpen = false;
   }
 
