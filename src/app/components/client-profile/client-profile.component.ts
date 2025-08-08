@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
               
             </div>
             <div>
-              <h2 class="text-xl font-semibold">Sarah Johnson</h2>
+              <h2 class="text-xl font-semibold">Sarah Ramirez</h2>
               <p class="text-sm text-muted-foreground">Premium Client • Since 2018</p>
               <div class="flex items-center space-x-4 mt-2">
                 <div class="flex items-center space-x-1">

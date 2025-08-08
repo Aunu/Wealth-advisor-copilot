@@ -145,7 +145,7 @@ interface AdvisorPerformance {
 })
 export class AdvisorDashboardComponent {
   advisorPerformance: AdvisorPerformance[] = [
-    { name: 'Sarah Johnson', revenue: 245000, clients: 32, conversion: 68 },
+    { name: 'Sarah Ramirez', revenue: 245000, clients: 32, conversion: 68 },
     { name: 'Michael Chen', revenue: 220000, clients: 28, conversion: 72 },
     { name: 'Emily Rodriguez', revenue: 195000, clients: 25, conversion: 65 },
     { name: 'David Kim', revenue: 180000, clients: 22, conversion: 70 },

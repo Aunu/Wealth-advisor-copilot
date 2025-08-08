@@ -156,7 +156,7 @@ export class DocumentSectionComponent {
       id: '1',
       title: 'Document Summary',
       type: 'PDF',
-      summary: 'Sarah Jhonson is a Senior Software Engineer at Apple Inc. with an annual salary of $8,750,000, currently employed full-time since May 2022. His tax return shows a total income matching his salary, with a federal tax liability of $1,921,953 and a tax refund of $192,195. \nHis Citi Private Bank investment account is valued at $601,917, with a year-to-date return of 5.51% and income generation of $68,023. His monthly bank statement shows regular salary deposits of $8,500 and an ending balance of $145,631.',
+      summary: 'Sarah Ramirez is a Senior Software Engineer at Apple Inc. with an annual salary of $8,750,000, currently employed full-time since May 2022. His tax return shows a total income matching his salary, with a federal tax liability of $1,921,953 and a tax refund of $192,195. \nHis Citi Private Bank investment account is valued at $601,917, with a year-to-date return of 5.51% and income generation of $68,023. His monthly bank statement shows regular salary deposits of $8,500 and an ending balance of $145,631.',
       lastModified: '',
       size: '',
       url: '#'
@@ -175,16 +175,16 @@ export class DocumentSectionComponent {
   mockDocumentsDetails: Document[] = [
     {
       id: '1',
-      title: 'Sarah Jhonson Investment Statement',
+      title: 'Sarah Ramirez Investment Statement',
       type: 'PDF',
-      summary: 'Sarah Jhonson is a Senior Software Engineer at Apple Inc. with an annual salary of $8,750,000, currently employed full-time since May 2022. His tax return shows a total income matching his salary, with a federal tax liability of $1,921,953 and a tax refund of $192,195. \nHis Citi Private Bank investment account is valued at $601,917, with a year-to-date return of 5.51% and income generation of $68,023. His monthly bank statement shows regular salary deposits of $8,500 and an ending balance of $145,631.',
+      summary: 'Sarah Ramirez is a Senior Software Engineer at Apple Inc. with an annual salary of $8,750,000, currently employed full-time since May 2022. His tax return shows a total income matching his salary, with a federal tax liability of $1,921,953 and a tax refund of $192,195. \nHis Citi Private Bank investment account is valued at $601,917, with a year-to-date return of 5.51% and income generation of $68,023. His monthly bank statement shows regular salary deposits of $8,500 and an ending balance of $145,631.',
       lastModified: '2025-01-15',
       size: '2.3 MB',
       url: '#'
     },
     {
       id: '2',
-      title: 'Sarah Jhonson Employment Verification',
+      title: 'Sarah Ramirez Employment Verification',
       type: 'PDF',
       summary: 'Recommend rebalancing the investment portfolio to align closer with the benchmark return, as the current account is underperforming by 1.46%.\nConsider discussing tax-efficient strategies to optimize the high annual salary and potential investment income.',
       lastModified: '2025-07-25',
@@ -193,7 +193,7 @@ export class DocumentSectionComponent {
     },
     {
       id: '3',
-      title: 'Sarah Jhonson Bank Statement',
+      title: 'Sarah Ramirez Bank Statement',
       type: 'PDF',
       summary: 'Recommend rebalancing the investment portfolio to align closer with the benchmark return, as the current account is underperforming by 1.46%.\nConsider discussing tax-efficient strategies to optimize the high annual salary and potential investment income.',
       lastModified: '2025-05-25',
@@ -202,7 +202,7 @@ export class DocumentSectionComponent {
     },
     {
       id: '4',
-      title: 'Sarah Jhonson 2023 Tax Return',
+      title: 'Sarah Ramirez 2023 Tax Return',
       type: 'PDF',
       summary: 'Recommend rebalancing the investment portfolio to align closer with the benchmark return, as the current account is underperforming by 1.46%.\nConsider discussing tax-efficient strategies to optimize the high annual salary and potential investment income.',
       lastModified: '2025-04-22',

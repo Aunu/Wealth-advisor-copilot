@@ -18,7 +18,7 @@ interface MeetingTopic {
 @Component({
   selector: 'app-meeting-topics-tile',
   standalone: true,
-  imports: [CommonModule, SmartTileComponent],
+  imports: [CommonModule, SmartTileComponent, EmailPreviewComponent],
   template: `
     <app-smart-tile [config]="tileConfig">
       <div class="space-y-3">
@@ -49,6 +49,7 @@ interface MeetingTopic {
                 <h4 class="font-medium text-sm">{{ topic.task_title }}</h4>
               </div>
               <div class="flex items-center space-x-2">
+              
                 <span [class]="'inline-flex items-center rounded-md px-2 py-1 text-xs font-medium ring-1 ring-inset ring-gray-500/10 ' + getStatusColor(topic.status)">
                   <ng-container [ngSwitch]="topic.status">
                     <svg *ngSwitchCase="'urgent'" class="h-3 w-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -57,9 +58,45 @@ interface MeetingTopic {
                     <svg *ngSwitchCase="'primary'" class="h-3 w-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                     </svg>
-                    <svg *ngSwitchDefault class="h-3 w-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+                     <svg
+              *ngIf="!topic.emailLoading"
+              (click)="onEmailClick(topic)"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-6 h-6 text-amber-500 hover:text-amber-700 cursor-pointer"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 8h18V8H3v8z"
+              />
+            </svg>
+
+             <svg
+              *ngIf="topic.emailLoading"
+              class="w-6 h-6 text-amber-500 animate-spin"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+              ></path>
+            </svg>
+                    
                   </ng-container>
                   
                 </span>
@@ -81,11 +118,13 @@ interface MeetingTopic {
           </div>
         </div>
       </div>
+      <email-preview #preview></email-preview>
     </app-smart-tile>
   `,
   styles: []
 })
 export class MeetingTopicsTileComponent {
+  emailRequestSent = false;
 
    meetingTopics: any = [
     
@@ -104,6 +143,24 @@ export class MeetingTopicsTileComponent {
       });
   
     }
+    onEmailClick(item: any) {
+    // Call the data service to generate the email content
+    console.log('Generating email for item:', item);
+    if (item && !this.emailRequestSent) {
+      item.emailLoading = true; // Show loading state
+      this.emailRequestSent = true; // Prevent multiple requests
+      this.dataService.generateEmailOfTask(item).subscribe(
+        data => {
+          this.emailRequestSent = false;
+          const response = JSON.parse(data.agent_response);
+          this.preview.open(response.emails[0].subject, response.emails[0].body);
+          item.status = 'completed';
+          this.meetingTopics = this.meetingTopics.filter((task: any) => task.status === 'pending');
+        },
+        error => console.error('Error loading data', error)
+      );
+    }
+  }
  
 
   

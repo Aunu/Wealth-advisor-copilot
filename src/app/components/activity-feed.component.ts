@@ -33,7 +33,7 @@ export class ActivityFeedComponent {
   mockActivities: Activity[] = [
     {
       id: '1',
-      advisor: { name: 'Sarah Johnson', initials: 'SJ' },
+      advisor: { name: 'Sarah Ramirez', initials: 'SJ' },
       action: 'Closed new client deal',
       client: 'Tech Solutions Inc',
       amount: '$45,000',
